@@ -1,84 +1,399 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Lesson Index</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 40px 24px 56px;
-      font-family: "Helvetica Neue", "PingFang SC", "Noto Sans SC", sans-serif;
-      background: #f7f3ec;
-      color: #2f342f;
-      line-height: 1.7;
-    }
-    main {
-      max-width: 880px;
-      margin: 0 auto;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-size: 32px;
-      font-weight: 500;
-      color: #2f4f2f;
-    }
-    p {
-      margin: 0 0 28px;
-      color: #5c655c;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
-    }
-    a {
-      display: block;
-      padding: 14px 16px;
-      text-decoration: none;
-      color: #2f342f;
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(47, 52, 47, 0.12);
-      transition: background-color 0.2s ease, transform 0.2s ease;
-    }
-    a:hover {
-      background: rgba(255, 255, 255, 0.88);
-      transform: translateY(-1px);
-    }
-    .num {
-      display: inline-block;
-      min-width: 72px;
-      color: #6e776e;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>童创 ART WORKSHOP｜首页</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#f6f0e6;
+  --ink:#171717;
+  --muted:#6f675d;
+  --line:rgba(20,20,20,.12);
+  --panel:#ffffff;
+  --dark:#1f1f1c;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.app{
+  max-width:980px;
+  margin:0 auto;
+  padding-bottom:48px;
+}
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:14px 18px 18px;
+  background:rgba(246,240,230,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  text-align:center;
+}
+.mark-wrap{
+  width:132px;
+  height:132px;
+  display:grid;
+  place-items:center;
+  background:#fff;
+  padding:16px;
+}
+.mark{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+.brand-title{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+.brand-sub{
+  margin-top:4px;
+  font-size:10px;
+  color:var(--muted);
+  font-weight:700;
+  letter-spacing:.12em;
+}
+.hero{
+  padding:18px;
+}
+.hero-photo{
+  position:relative;
+  min-height:620px;
+  border-radius:30px;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.16) 34%,rgba(0,0,0,.82) 100%),
+    url("hero-worktable.jpg");
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+.hero-content{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:30px 24px 32px;
+  color:#fff;
+}
+.label{
+  display:inline-flex;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(10px);
+  font-size:12px;
+  color:rgba(255,255,255,.92);
+  margin-bottom:16px;
+}
+h1{
+  margin:0;
+  font-size:clamp(42px,10vw,76px);
+  line-height:.98;
+  letter-spacing:-.06em;
+}
+.hero-text{
+  max-width:520px;
+  margin-top:20px;
+  font-size:16px;
+  line-height:1.75;
+  color:rgba(255,255,255,.86);
+}
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+.btn{
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 18px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:800;
+}
+.btn.light{
+  background:#fff;
+  color:#181818;
+}
+.btn.ghost{
+  border:1px solid rgba(255,255,255,.34);
+  color:#fff;
+  background:rgba(255,255,255,.1);
+}
+.section{
+  padding:14px 18px 4px;
+}
+.section h2{
+  margin:0;
+  font-size:28px;
+  letter-spacing:-.04em;
+}
+.section p{
+  margin:8px 0 0;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.65;
+}
+.rail{
+  display:flex;
+  align-items:stretch;
+  gap:14px;
+  overflow-x:auto;
+  padding:14px 18px 28px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+.rail::-webkit-scrollbar{display:none}
+.card{
+  flex:0 0 78vw;
+  max-width:320px;
+  aspect-ratio:3/4;
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  background:#222;
+  color:#fff;
+  text-decoration:none;
+  scroll-snap-align:start;
+  box-shadow:0 14px 34px rgba(65,52,38,.18);
+}
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  display:block;
+  transform:scale(1.08);
+}
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.04) 0%,rgba(0,0,0,.14) 42%,rgba(0,0,0,.8) 100%);
+}
+.card-text{
+  position:absolute;
+  z-index:2;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:22px;
+}
+.num{
+  font-size:12px;
+  color:rgba(255,255,255,.72);
+  letter-spacing:.08em;
+  margin-bottom:8px;
+}
+.card h3{
+  margin:0;
+  font-size:26px;
+  line-height:1.18;
+  letter-spacing:-.035em;
+}
+.card p{
+  margin:12px 0 0;
+  max-width:240px;
+  color:rgba(255,255,255,.84);
+  font-size:14px;
+  line-height:1.65;
+}
+.tag{
+  display:inline-flex;
+  margin-top:15px;
+  padding:6px 11px;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.28);
+  color:rgba(255,255,255,.88);
+  font-size:12px;
+}
+.worlds{
+  padding:8px 18px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.mini{
+  min-height:auto;
+  border-radius:0;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid var(--line);
+  text-decoration:none;
+  color:var(--ink);
+  padding:18px 0;
+  display:grid;
+  grid-template-columns:64px 1fr;
+  gap:16px;
+}
+.mini strong{
+  font-size:21px;
+  line-height:1.35;
+  font-weight:800;
+  letter-spacing:-.03em;
+}
+.mini span{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-top:4px;
+  display:block;
+}
+.mini-no{
+  font-size:13px;
+  color:var(--muted);
+  letter-spacing:.08em;
+  padding-top:4px;
+}
+.mini-body{min-width:0}
+.manifesto{
+  margin:18px;
+  padding:24px;
+  border-radius:28px;
+  background:var(--dark);
+  color:#f6f0e6;
+}
+.manifesto h2{
+  margin:0 0 12px;
+  font-size:28px;
+  letter-spacing:-.04em;
+}
+.manifesto p{
+  margin:0;
+  color:rgba(246,240,230,.8);
+  line-height:1.8;
+  font-size:15px;
+}
+footer{
+  padding:10px 20px 36px;
+  color:#80786c;
+  font-size:13px;
+}
+@media (min-width:760px){
+  .card{flex-basis:320px}
+}
+</style>
 </head>
 <body>
-  <main>
-    <h1>New Lesson</h1>
-    <p>1-19 课目录</p>
-    <ul>
-      <li><a href="lesson-01 创作自己的小森林.html"><span class="num">Lesson 01</span>创作自己的小森林</a></li>
-      <li><a href="lesson-02 创作自己看到的天空.html"><span class="num">Lesson 02</span>创作自己看到的天空</a></li>
-      <li><a href="lesson-03 我的奇妙院子.html"><span class="num">Lesson 03</span>我的奇妙院子</a></li>
-      <li><a href="lesson-04 蔬菜王国.html"><span class="num">Lesson 04</span>蔬菜王国</a></li>
-      <li><a href="lesson-05 动物王国.html"><span class="num">Lesson 05</span>动物王国</a></li>
-      <li><a href="lesson-06 藏在花朵里的世界.html"><span class="num">Lesson 06</span>藏在花朵里的世界</a></li>
-      <li><a href="lesson-07 植物拓染.html"><span class="num">Lesson 07</span>植物拓染</a></li>
-      <li><a href="lesson-08 生日景观.html"><span class="num">Lesson 08</span>生日景观</a></li>
-      <li><a href="lesson-09 城市绘制.html"><span class="num">Lesson 09</span>城市绘制</a></li>
-      <li><a href="lesson-10 天气制造局.html"><span class="num">Lesson 10</span>天气制造局</a></li>
-      <li><a href="lesson-11 杯子里的大世界.html"><span class="num">Lesson 11</span>杯子里的大世界</a></li>
-      <li><a href="lesson-12 逛超市的小动物.html"><span class="num">Lesson 12</span>逛超市的小动物</a></li>
-      <li><a href="lesson-13 开个大派对.html"><span class="num">Lesson 13</span>开个大派对</a></li>
-      <li><a href="lesson-14 雨水.html"><span class="num">Lesson 14</span>雨水</a></li>
-      <li><a href="lesson-15 给自己设计玩具.html"><span class="num">Lesson 15</span>给自己设计玩具</a></li>
-      <li><a href="lesson-16 藏宝盒.html"><span class="num">Lesson 16</span>藏宝盒</a></li>
-      <li><a href="lesson-17 我的梦.html"><span class="num">Lesson 17</span>我的梦</a></li>
-      <li><a href="lesson-18 飞起来.html"><span class="num">Lesson 18</span>飞起来</a></li>
-      <li><a href="lesson-19 自己的肖像.html"><span class="num">Lesson 19</span>自己的肖像</a></li>
-    </ul>
-  </main>
+<div class="app">
+  <header>
+    <div class="brand">
+      <div class="mark-wrap">
+        <img class="mark" src="logo.jpg" alt="童创艺术 logo">
+      </div>
+      <div class="brand-title">童创 ART WORKSHOP</div>
+      <div class="brand-sub">TONGCHUANG MATERIAL WORLD</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-photo">
+      <div class="hero-content">
+        <div class="label">WORKSHOP · MATERIAL · WORLD BUILDING</div>
+        <h1>做出一个<br>自己的世界。</h1>
+        <div class="hero-text">这里不是把画画得更像。这里有木板、石膏、白胶、颜料、碎纸和孩子正在搭建的地形。</div>
+        <div class="actions">
+          <a class="btn light" href="#featured">进入工作台</a>
+          <a class="btn ghost" href="#all">浏览 19 个世界</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="featured">
+    <h2>Work Tables</h2>
+    <p>每一个主题，都像一张正在被使用的工作台。</p>
+  </section>
+
+  <div class="rail">
+    <a class="card" href="lesson-01 创作自己的小森林.html">
+      <img src="detail-01.jpg" alt="第1课现场">
+      <div class="card-text">
+        <div class="num">LESSON 01</div>
+        <h3>第1课｜创作自己的小森林</h3>
+        <p>从一块地面开始，搭建树、洞口、路径和可以停留的地方。</p>
+        <div class="tag">FOREST BUILDING</div>
+      </div>
+    </a>
+    <a class="card" href="lesson-14 雨水.html">
+      <img src="hero-worktable.jpg" alt="第14课现场">
+      <div class="card-text">
+        <div class="num">LESSON 14</div>
+        <h3>第14课｜雨水</h3>
+        <p>用水、蓝色、棉花和声音，创造一场属于自己的雨。</p>
+        <div class="tag">RAIN SYSTEM</div>
+      </div>
+    </a>
+    <a class="card" href="lesson-18 飞起来.html">
+      <img src="detail-02.jpg" alt="第18课现场">
+      <div class="card-text">
+        <div class="num">LESSON 18</div>
+        <h3>第18课｜飞起来</h3>
+        <p>做一个离开地面的东西，给它方向、理由和一点点风。</p>
+        <div class="tag">FLYING OBJECTS</div>
+      </div>
+    </a>
+  </div>
+
+  <section class="section" id="all">
+    <h2>全部 19 个主题</h2>
+    <p>保留完整课件结构，作为工作室档案继续阅读。</p>
+  </section>
+
+  <div class="worlds">
+    <a class="mini" href="lesson-01 创作自己的小森林.html"><div class="mini-no">01</div><div class="mini-body"><strong>创作自己的小森林</strong><span>栖息｜构筑｜根系｜自由生长</span></div></a>
+    <a class="mini" href="lesson-02 创作自己看到的天空.html"><div class="mini-no">02</div><div class="mini-body"><strong>创作自己看到的天空</strong><span>仰望｜变幻｜情绪的色彩｜瞬间</span></div></a>
+    <a class="mini" href="lesson-03 我的奇妙院子.html"><div class="mini-no">03</div><div class="mini-body"><strong>我的奇妙院子</strong><span>私密｜建造｜生活感｜童年精神地图</span></div></a>
+    <a class="mini" href="lesson-04 蔬菜王国.html"><div class="mini-no">04</div><div class="mini-body"><strong>蔬菜王国</strong><span>变形｜角色想象｜图像建构｜趣味翻转</span></div></a>
+    <a class="mini" href="lesson-05 动物王国.html"><div class="mini-no">05</div><div class="mini-body"><strong>动物王国</strong><span>拟像观察｜感官比喻｜想象生态｜自我投射</span></div></a>
+    <a class="mini" href="lesson-06 藏在花朵里的世界.html"><div class="mini-no">06</div><div class="mini-body"><strong>藏在花朵里的世界</strong><span>分层结构｜情感容器｜微观世界｜绽放与隐匿</span></div></a>
+    <a class="mini" href="lesson-07 植物拓染.html"><div class="mini-no">07</div><div class="mini-body"><strong>植物拓染</strong><span>痕迹｜生命纹理｜感官观察｜再创造</span></div></a>
+    <a class="mini" href="lesson-08 生日景观.html"><div class="mini-no">08</div><div class="mini-body"><strong>生日景观</strong><span>庆祝｜愿望具象化｜空间营造｜童年仪式</span></div></a>
+    <a class="mini" href="lesson-09 城市绘制.html"><div class="mini-no">09</div><div class="mini-body"><strong>城市绘制</strong><span>集体构想｜地图语言｜结构构建｜社会观察</span></div></a>
+    <a class="mini" href="lesson-10 天气制造局.html"><div class="mini-no">10</div><div class="mini-body"><strong>天气制造局</strong><span>模拟｜自然现象｜幻想科学｜艺术实验</span></div></a>
+    <a class="mini" href="lesson-11 杯子里的大世界.html"><div class="mini-no">11</div><div class="mini-body"><strong>杯子里的大世界</strong><span>微观｜容器｜缩小视角｜梦境构建</span></div></a>
+    <a class="mini" href="lesson-12 逛超市的小动物.html"><div class="mini-no">12</div><div class="mini-body"><strong>逛超市的小动物</strong><span>角色扮演｜生活观察｜小剧场｜拟人化</span></div></a>
+    <a class="mini" href="lesson-13 开个大派对.html"><div class="mini-no">13</div><div class="mini-body"><strong>开个大派对</strong><span>庆祝｜场景构造｜抽象寓意｜集体叙事</span></div></a>
+    <a class="mini" href="lesson-14 雨水.html"><div class="mini-no">14</div><div class="mini-body"><strong>雨水</strong><span>流动｜情绪共鸣｜时间痕迹｜自然节奏</span></div></a>
+    <a class="mini" href="lesson-15 给自己设计玩具.html"><div class="mini-no">15</div><div class="mini-body"><strong>给自己设计玩具</strong><span>功能想象｜结构构造｜情感投射｜游戏精神</span></div></a>
+    <a class="mini" href="lesson-16 藏宝盒.html"><div class="mini-no">16</div><div class="mini-body"><strong>藏宝盒</strong><span>私密｜叙事装置｜物件的意义｜记忆拼贴</span></div></a>
+    <a class="mini" href="lesson-17 我的梦.html"><div class="mini-no">17</div><div class="mini-body"><strong>我的梦</strong><span>潜意识｜夜的图像｜自我象征｜模糊叙事</span></div></a>
+    <a class="mini" href="lesson-18 飞起来.html"><div class="mini-no">18</div><div class="mini-body"><strong>飞起来</strong><span>飞行｜想象的物理学｜离地感｜创造性迁移</span></div></a>
+    <a class="mini" href="lesson-19 自己的肖像.html"><div class="mini-no">19</div><div class="mini-body"><strong>自己的肖像</strong><span>自我表达｜非写实｜象征与比喻｜身份感</span></div></a>
+  </div>
+
+  <section class="manifesto">
+    <p style="margin:0 0 18px;color:rgba(246,240,230,.92);line-height:1.9;font-size:15px">这里没有标准答案。<br><br>孩子会用纸板、石膏、树枝、棉花，把脑子里的东西慢慢变成真实存在的世界。<br><br>有时是森林，有时是天气，有时只是一个没人见过的小角落。<br><br>我们更在意：他们如何观察、如何搭建、如何让一个想法慢慢出现。</p>
+    <h2>ART WORKSHOP，不是美术班。</h2>
+    <p>我们更在意孩子如何使用材料，如何观察，如何把一个还不存在的东西慢慢做出来。这里保留过程、保留痕迹，也保留每一个主题最后形成的世界。</p>
+  </section>
+
+  <footer>童创艺术空间 · Material World Building</footer>
+</div>
 </body>
 </html>
