@@ -289,6 +289,43 @@ h1{
   line-height:1.8;
   font-size:15px;
 }
+.admin-entry{
+  margin:4px 18px 18px;
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.66);
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.admin-copy strong{
+  display:block;
+  font-size:16px;
+  letter-spacing:-.02em;
+}
+.admin-copy span{
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.admin-link{
+  flex:0 0 auto;
+  text-decoration:none;
+  min-height:42px;
+  padding:0 16px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--dark);
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+}
 footer{
   padding:10px 20px 36px;
   color:#80786c;
@@ -394,6 +431,13 @@ footer{
   </section>
 
   <footer>童创艺术空间 · Material World Building</footer>
+  <section class="admin-entry">
+    <div class="admin-copy">
+      <strong>管理入口</strong>
+      <span>录入学员、记录缴费、签到扣课、查询剩余。这个入口只给工作室内部使用。</span>
+    </div>
+    <a class="admin-link" href="manage/index.html">进入管理</a>
+  </section>
 </div>
 </body>
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>签到扣课｜童创艺术</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f0e6;color:#171717;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+.app{max-width:860px;margin:0 auto;padding:18px}
+.back{display:inline-block;margin-bottom:16px;color:#171717;text-decoration:none;font-size:14px;font-weight:700}
+.panel,.log{background:#fff;border:1px solid rgba(23,23,23,.12);border-radius:24px;padding:22px}
+h1{margin:0 0 14px;font-size:30px;letter-spacing:-.04em}
+.search{display:grid;grid-template-columns:1fr auto;gap:12px}
+.field{min-height:48px;padding:0 14px;border:1px solid rgba(23,23,23,.12);border-radius:14px;background:#faf8f3}
+.btn{min-height:48px;padding:0 18px;border:0;border-radius:999px;background:#1f1f1c;color:#fff;font-weight:800}
+.student{margin-top:18px;border:1px solid rgba(23,23,23,.08);border-radius:18px;padding:18px;background:#fbfaf6}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.box{padding:14px;border-radius:16px;background:#fff;border:1px solid rgba(23,23,23,.08)}
+.box strong{display:block;font-size:22px}
+.box span{display:block;margin-top:4px;color:#71695d;font-size:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.ghost{background:#ece6da;color:#171717}
+.log{margin-top:18px}
+.log h2{margin:0 0 10px;font-size:20px}
+.log ul{margin:0;padding-left:18px;color:#71695d;line-height:1.9}
+@media (max-width:760px){
+  .search{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="index.html">← 返回管理入口</a>
+
+  <section class="panel">
+    <h1>签到扣课</h1>
+    <div class="search">
+      <input class="field" type="text" placeholder="输入学员姓名 / 家长姓名 / 电话号码">
+      <button class="btn">搜索学员</button>
+    </div>
+
+    <div class="student">
+      <strong style="font-size:24px">林一一</strong>
+      <div style="margin-top:6px;color:#71695d">森林主题 ｜ 妈妈 王女士 ｜ 138****1024</div>
+      <div class="meta">
+        <div class="box"><strong>10</strong><span>总课时</span></div>
+        <div class="box"><strong>6</strong><span>剩余课时</span></div>
+        <div class="box"><strong>2026-05-12</strong><span>最近签到</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn">签到并扣 1 课时</button>
+        <button class="btn ghost">登记请假</button>
+        <button class="btn ghost">登记补课</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="log">
+    <h2>最近课时流水</h2>
+    <ul>
+      <li>2026-05-12 ｜ 签到扣课 ｜ -1</li>
+      <li>2026-05-05 ｜ 签到扣课 ｜ -1</li>
+      <li>2026-04-28 ｜ 补录课时 ｜ -1</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>

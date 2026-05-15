@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>学员列表｜童创艺术</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f0e6;color:#171717;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+.app{max-width:980px;margin:0 auto;padding:18px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.back,.new{font-size:14px;font-weight:700;text-decoration:none}
+.back{color:#171717}.new{color:#fff;background:#1f1f1c;padding:10px 14px;border-radius:999px}
+.search,.table{background:#fff;border:1px solid rgba(23,23,23,.12);border-radius:22px}
+.search{padding:18px;margin-bottom:16px}
+.search h1{margin:0 0 10px;font-size:28px}
+.search-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+.field{min-height:44px;border:1px solid rgba(23,23,23,.12);border-radius:14px;padding:0 14px;background:#faf8f3;color:#171717}
+.table{overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid rgba(23,23,23,.08);font-size:14px}
+th{font-size:12px;color:#746c61;letter-spacing:.08em}
+.tag{display:inline-flex;padding:5px 10px;border-radius:999px;background:#edf4ee;color:#2d6b4a;font-size:12px;font-weight:700}
+.warn{background:#fff1de;color:#9a6300}
+@media (max-width:760px){
+  .search-row{grid-template-columns:1fr}
+  table,thead,tbody,tr,td,th{display:block}
+  thead{display:none}
+  tr{padding:10px 0;border-bottom:1px solid rgba(23,23,23,.08)}
+  td{border:0;padding:6px 16px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <a class="back" href="index.html">← 返回管理入口</a>
+    <a class="new" href="new.html">新增学员</a>
+  </div>
+
+  <section class="search">
+    <h1>学员列表</h1>
+    <div class="search-row">
+      <input class="field" type="text" placeholder="搜索学员姓名 / 家长姓名 / 电话号码">
+      <select class="field"><option>全部课程</option><option>森林</option><option>天空</option><option>综合创作</option></select>
+      <select class="field"><option>全部状态</option><option>正常上课</option><option>课时不足</option><option>已停课</option></select>
+    </div>
+  </section>
+
+  <section class="table">
+    <table>
+      <thead>
+        <tr>
+          <th>学员</th>
+          <th>联系</th>
+          <th>课程</th>
+          <th>总课时</th>
+          <th>剩余</th>
+          <th>最近签到</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>林一一<br><span style="color:#746c61;font-size:12px">儿童 / 6岁</span></td>
+          <td>妈妈 王女士<br><span style="color:#746c61;font-size:12px">138****1024</span></td>
+          <td>森林主题</td>
+          <td>10</td>
+          <td>6</td>
+          <td>2026-05-12</td>
+          <td><span class="tag">正常上课</span></td>
+        </tr>
+        <tr>
+          <td>周木木<br><span style="color:#746c61;font-size:12px">成人</span></td>
+          <td>本人<br><span style="color:#746c61;font-size:12px">159****8812</span></td>
+          <td>综合创作</td>
+          <td>8</td>
+          <td>2</td>
+          <td>2026-05-10</td>
+          <td><span class="tag warn">课时不足</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+</body>
+</html>

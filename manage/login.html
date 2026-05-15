@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>内部登录｜童创艺术</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#f6f0e6;
+  color:#171717;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.app{max-width:560px;margin:0 auto;padding:18px}
+.back{display:inline-block;margin-bottom:16px;color:#171717;text-decoration:none;font-size:14px;font-weight:700}
+.panel{
+  background:#fff;
+  border:1px solid rgba(23,23,23,.12);
+  border-radius:24px;
+  padding:22px;
+}
+h1{margin:0 0 12px;font-size:30px;letter-spacing:-.04em}
+.desc{margin:0 0 18px;color:#71695d;line-height:1.8}
+.status{
+  margin:0 0 18px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:#fbfaf6;
+  border:1px solid rgba(23,23,23,.08);
+  color:#61594f;
+  line-height:1.7;
+  font-size:14px;
+}
+.status.ok{background:#edf6ef;color:#245b39}
+.status.error{background:#fff0ea;color:#9b3f24}
+.field{
+  width:100%;
+  min-height:48px;
+  padding:0 14px;
+  border:1px solid rgba(23,23,23,.12);
+  border-radius:14px;
+  background:#faf8f3;
+  color:#171717;
+  margin-bottom:12px;
+}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.btn{
+  min-height:44px;
+  padding:0 16px;
+  border-radius:999px;
+  border:0;
+  font-weight:800;
+  cursor:pointer;
+}
+.btn:disabled{opacity:.55;cursor:wait}
+.primary{background:#1f1f1c;color:#fff}
+.secondary{background:#ece6da;color:#171717}
+.tips{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid rgba(23,23,23,.08);
+  color:#71695d;
+  line-height:1.8;
+  font-size:13px;
+}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:12px;
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="index.html">← 返回管理入口</a>
+
+  <section class="panel">
+    <h1>内部登录</h1>
+    <p class="desc">第一版先用 Supabase 邮箱 + 密码登录。第一次使用时可以先创建一个内部账号，后面手机上直接登录即可。</p>
+
+    <div id="status" class="status">请先确认 <code>supabase-config.js</code> 里已经填好了项目地址和 publishable key。</div>
+
+    <input id="email" class="field" type="email" placeholder="邮箱">
+    <input id="password" class="field" type="password" placeholder="密码">
+
+    <div class="actions">
+      <button id="login-btn" class="btn primary" type="button">登录</button>
+      <button id="signup-btn" class="btn secondary" type="button">创建内部账号</button>
+    </div>
+
+    <div class="tips">
+      <div>如果是第一次使用，先点 <strong>创建内部账号</strong>。</div>
+      <div>如果 Supabase 开启了邮箱确认，需要先去邮箱点确认链接，再回来登录。</div>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
+<script src="./supabase-client.js"></script>
+<script>
+const statusBox = document.getElementById("status");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const loginBtn = document.getElementById("login-btn");
+const signupBtn = document.getElementById("signup-btn");
+const next = new URLSearchParams(location.search).get("next") || "index.html";
+
+function setStatus(message, type = "") {
+  statusBox.className = "status" + (type ? " " + type : "");
+  statusBox.textContent = message;
+}
+
+function setBusy(busy) {
+  loginBtn.disabled = busy;
+  signupBtn.disabled = busy;
+}
+
+async function signIn() {
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+  if (!email || !password) {
+    setStatus("请输入邮箱和密码。", "error");
+    return;
+  }
+
+  setBusy(true);
+  setStatus("正在登录…");
+  try {
+    const client = window.tcManage.getClient();
+    const { error } = await client.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    setStatus("登录成功，正在进入管理页面…", "ok");
+    location.href = next;
+  } catch (error) {
+    setStatus(window.tcManage.formatError(error), "error");
+  } finally {
+    setBusy(false);
+  }
+}
+
+async function signUp() {
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+  if (!email || !password) {
+    setStatus("请输入邮箱和密码。", "error");
+    return;
+  }
+
+  setBusy(true);
+  setStatus("正在创建账号…");
+  try {
+    const client = window.tcManage.getClient();
+    const { error } = await client.auth.signUp({ email, password });
+    if (error) throw error;
+    setStatus("账号已创建。如果你收到了邮箱确认，请先确认，再回来登录。", "ok");
+  } catch (error) {
+    setStatus(window.tcManage.formatError(error), "error");
+  } finally {
+    setBusy(false);
+  }
+}
+
+loginBtn.addEventListener("click", signIn);
+signupBtn.addEventListener("click", signUp);
+
+if (window.tcManage.hasConfig()) {
+  setStatus("配置已读取。你现在可以直接登录，或先创建一个内部账号。");
+} else {
+  setStatus("请先填写 supabase-config.js。", "error");
+}
+</script>
+</body>
+</html>

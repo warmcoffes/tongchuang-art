@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>缴费记录｜童创艺术</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f0e6;color:#171717;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+.app{max-width:920px;margin:0 auto;padding:18px}
+.back{display:inline-block;margin-bottom:16px;color:#171717;text-decoration:none;font-size:14px;font-weight:700}
+.panel,.records{background:#fff;border:1px solid rgba(23,23,23,.12);border-radius:24px;padding:22px}
+h1{margin:0 0 14px;font-size:30px;letter-spacing:-.04em}
+.grid{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr;gap:12px}
+.field{min-height:46px;padding:0 14px;border:1px solid rgba(23,23,23,.12);border-radius:14px;background:#faf8f3}
+.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.btn{min-height:44px;padding:0 16px;border-radius:999px;border:0;font-weight:800}
+.primary{background:#1f1f1c;color:#fff}.secondary{background:#ece6da;color:#171717}
+.records{margin-top:18px}
+.row{display:grid;grid-template-columns:1.2fr .8fr .8fr 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(23,23,23,.08)}
+.row:last-child{border-bottom:0}
+.muted{color:#71695d;font-size:13px}
+@media (max-width:760px){
+  .grid,.row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="index.html">← 返回管理入口</a>
+
+  <section class="panel">
+    <h1>缴费记录</h1>
+    <div class="grid">
+      <input class="field" type="text" placeholder="学员姓名 / 家长姓名">
+      <input class="field" type="number" placeholder="缴费金额">
+      <select class="field"><option>缴费方式</option><option>微信</option><option>支付宝</option><option>现金</option><option>转账</option></select>
+      <input class="field" type="date" placeholder="缴费时间">
+    </div>
+    <div class="actions">
+      <button class="btn primary">保存记录</button>
+      <button class="btn secondary">清空</button>
+    </div>
+  </section>
+
+  <section class="records">
+    <div class="row">
+      <div><strong>林一一</strong><div class="muted">森林主题</div></div>
+      <div><strong>¥ 799</strong><div class="muted">已缴费</div></div>
+      <div><strong>微信</strong><div class="muted">支付方式</div></div>
+      <div><strong>2026-05-01</strong><div class="muted">缴费时间</div></div>
+    </div>
+    <div class="row">
+      <div><strong>周木木</strong><div class="muted">综合创作</div></div>
+      <div><strong>¥ 680</strong><div class="muted">已缴费</div></div>
+      <div><strong>转账</strong><div class="muted">支付方式</div></div>
+      <div><strong>2026-05-03</strong><div class="muted">缴费时间</div></div>
+    </div>
+  </section>
+</div>
+</body>
+</html>
