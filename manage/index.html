@@ -7,83 +7,28 @@
 <style>
 *{box-sizing:border-box}
 :root{
-  --bg:#f6f0e6;
-  --panel:#fff;
-  --ink:#171717;
-  --muted:#71695d;
-  --line:rgba(23,23,23,.12);
-  --dark:#1f1f1c;
-  --accent:#2d6b4a;
+  --bg:#f6f0e6;--panel:#fff;--ink:#171717;--muted:#71695d;--line:rgba(23,23,23,.12);
 }
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
-}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
 .app{max-width:960px;margin:0 auto;padding:18px 18px 40px}
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  margin-bottom:18px;
-}
-.back{
-  text-decoration:none;color:var(--ink);font-size:14px;font-weight:700;
-}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.back{text-decoration:none;color:var(--ink);font-size:14px;font-weight:700}
 .top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .action-link{
-  text-decoration:none;
-  min-height:38px;
-  padding:0 14px;
-  border-radius:999px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  background:#1f1f1c;
-  color:#fff;
-  font-size:13px;
-  font-weight:800;
-  border:0;
-  cursor:pointer;
+  text-decoration:none;min-height:38px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
+  background:#1f1f1c;color:#fff;font-size:13px;font-weight:800;border:0;cursor:pointer;
 }
-.badge{
-  display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border-radius:999px;
-  border:1px solid var(--line);background:rgba(255,255,255,.66);font-size:12px;color:var(--muted);
-}
-.hero{
-  background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:22px;
-  box-shadow:0 16px 36px rgba(54,41,26,.08);
-}
+.badge{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.66);font-size:12px;color:var(--muted)}
+.hero,.session,.card{background:var(--panel);border:1px solid var(--line);border-radius:24px}
+.hero{padding:22px;box-shadow:0 16px 36px rgba(54,41,26,.08)}
 h1{margin:0;font-size:32px;letter-spacing:-.04em}
-.hero p{
-  margin:10px 0 0;color:var(--muted);line-height:1.8;font-size:15px;max-width:680px;
-}
-.grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px;
-}
-.card{
-  background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:22px;
-  text-decoration:none;color:var(--ink);display:block;
-}
+.session{margin-top:16px;padding:16px 18px;color:var(--muted);line-height:1.8;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+.card{padding:20px;text-decoration:none;color:var(--ink);display:block}
 .card small{display:block;color:var(--muted);font-size:12px;letter-spacing:.08em}
 .card strong{display:block;margin-top:8px;font-size:24px;letter-spacing:-.03em}
-.card p{margin:10px 0 0;color:var(--muted);line-height:1.7;font-size:14px}
-.list{
-  margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:20px;
-}
-.list h2{margin:0 0 10px;font-size:20px}
-.list ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.9}
-.session{
-  margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px 20px;
-  color:var(--muted);line-height:1.8;font-size:14px;
-}
-code{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:12px;
-}
-@media (max-width:760px){
-  .grid{grid-template-columns:1fr}
-  h1{font-size:28px}
-}
+.card span{display:block;margin-top:10px;color:var(--muted);line-height:1.7;font-size:14px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}h1{font-size:28px}}
 </style>
 </head>
 <body>
@@ -99,43 +44,32 @@ code{
 
   <section class="hero">
     <h1>管理入口</h1>
-    <p>第一版先只做一条最清楚的工作流：录入学员 → 记录缴费 → 签到扣课 → 查询剩余。页面先轻量，后面再继续接真实数据和搜索。</p>
   </section>
+
+  <section id="session-box" class="session">正在检查登录状态…</section>
 
   <div class="grid">
     <a class="card" href="students.html">
       <small>01</small>
       <strong>学员列表</strong>
-      <p>按姓名、家长姓名或手机号查看学员资料、课程和剩余课时。</p>
+      <span>查询学员、课时、状态</span>
     </a>
     <a class="card" href="new.html">
       <small>02</small>
       <strong>新增学员</strong>
-      <p>一页录完姓名、电话、课程、总课时、日期和备注，适合前台快速录入。</p>
+      <span>录入学员和缴费</span>
     </a>
     <a class="card" href="checkin.html">
       <small>03</small>
       <strong>签到扣课</strong>
-      <p>快速搜索学员并签到，自动扣减课时，保留当次记录。</p>
+      <span>签到、请假、补课、调整</span>
     </a>
     <a class="card" href="payments.html">
       <small>04</small>
       <strong>缴费记录</strong>
-      <p>记录金额、时间和方式，和学员档案一起查看。</p>
+      <span>查看和新增缴费</span>
     </a>
   </div>
-
-  <section class="list">
-    <h2>第一版范围</h2>
-    <ul>
-      <li>不做复杂财务状态，只记录已经发生的缴费。</li>
-      <li>支持儿童和成人两种身份。</li>
-      <li>保留签到、请假、补课、手动调整等课时流水入口。</li>
-      <li>优先保证录入快、签到快、查询快。</li>
-    </ul>
-  </section>
-
-  <section id="session-box" class="session">正在检查登录状态…</section>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="./supabase-config.js"></script>
@@ -144,34 +78,16 @@ code{
 <script>
 const sessionBox = document.getElementById("session-box");
 const logoutBtn = document.getElementById("logout-btn");
-
-function setSessionText(message) {
-  sessionBox.textContent = message;
-}
-
-async function initSession() {
-  if (!window.tcManage.hasConfig()) {
-    setSessionText("还没有填写 supabase-config.js，请先补上项目地址和 publishable key。");
-    return;
-  }
-
+function setSessionText(message){sessionBox.textContent=message}
+async function initSession(){
+  if(!window.tcManage.hasConfig()){setSessionText("请先完成 Supabase 配置。");return;}
   const session = await window.tcManage.getSession();
-  if (session && session.user) {
-    setSessionText(`当前已登录：${session.user.email}`);
-  } else {
-    setSessionText("当前还没有登录。请先进入“登录”页面创建或登录内部账号，然后再录入学员。");
-  }
+  setSessionText(session && session.user ? `当前已登录：${session.user.email}` : "当前未登录");
 }
-
 logoutBtn.addEventListener("click", async () => {
-  try {
-    await window.tcAuth.signOut();
-    setSessionText("你已经退出登录。");
-  } catch (error) {
-    setSessionText(window.tcManage.formatError(error));
-  }
+  try{await window.tcAuth.signOut();setSessionText("你已经退出登录。");}
+  catch(error){setSessionText(window.tcManage.formatError(error));}
 });
-
 initSession();
 </script>
 </body>

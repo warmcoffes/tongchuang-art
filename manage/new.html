@@ -6,103 +6,39 @@
 <title>新增学员｜童创艺术</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:#f6f0e6;
-  color:#171717;
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
-}
+body{margin:0;background:#f6f0e6;color:#171717;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
 .app{max-width:860px;margin:0 auto;padding:18px}
-.back{
-  display:inline-block;
-  margin-bottom:16px;
-  color:#171717;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:700;
-}
-.panel{
-  background:#fff;
-  border:1px solid rgba(23,23,23,.12);
-  border-radius:24px;
-  padding:22px;
-}
+.back{display:inline-block;margin-bottom:16px;color:#171717;text-decoration:none;font-size:14px;font-weight:700}
+.panel{background:#fff;border:1px solid rgba(23,23,23,.12);border-radius:24px;padding:22px}
 h1{margin:0 0 14px;font-size:30px;letter-spacing:-.04em}
-.desc{margin:0 0 18px;color:#71695d;line-height:1.8}
-.status{
-  margin:0 0 18px;
-  padding:12px 14px;
-  border-radius:14px;
-  background:#fbfaf6;
-  border:1px solid rgba(23,23,23,.08);
-  color:#61594f;
-  line-height:1.7;
-  font-size:14px;
-}
-.status.ok{background:#edf6ef;color:#245b39}
-.status.error{background:#fff0ea;color:#9b3f24}
+.status{margin:0 0 18px;padding:12px 14px;border-radius:14px;background:#fbfaf6;border:1px solid rgba(23,23,23,.08);color:#61594f;line-height:1.7;font-size:14px}
+.status.ok{background:#edf6ef;color:#245b39}.status.error{background:#fff0ea;color:#9b3f24}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field,.area{
-  width:100%;
-  border:1px solid rgba(23,23,23,.12);
-  border-radius:14px;
-  background:#faf8f3;
-  color:#171717;
-}
-.field{min-height:46px;padding:0 14px}
-.area{min-height:112px;padding:12px 14px;resize:vertical}
-.full{grid-column:1/-1}
+.field,.area{width:100%;border:1px solid rgba(23,23,23,.12);border-radius:14px;background:#faf8f3;color:#171717}
+.field{min-height:46px;padding:0 14px}.area{min-height:112px;padding:12px 14px;resize:vertical}.full{grid-column:1/-1}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.btn{
-  min-height:44px;
-  padding:0 16px;
-  border-radius:999px;
-  border:0;
-  font-weight:800;
-  cursor:pointer;
-}
-.btn:disabled{opacity:.55;cursor:wait}
-.primary{background:#1f1f1c;color:#fff}
-.secondary{background:#ece6da;color:#171717}
-.link{
-  display:inline-flex;
-  margin-top:14px;
-  color:#245b39;
-  font-size:13px;
-  font-weight:700;
-  text-decoration:none;
-}
-code{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:12px;
-}
-@media (max-width:760px){
-  .grid{grid-template-columns:1fr}
-}
+.btn{min-height:44px;padding:0 16px;border-radius:999px;border:0;font-weight:800;cursor:pointer}
+.btn:disabled{opacity:.55;cursor:wait}.primary{background:#1f1f1c;color:#fff}.secondary{background:#ece6da;color:#171717}
+.link{display:inline-flex;margin-top:14px;color:#245b39;font-size:13px;font-weight:700;text-decoration:none}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="app">
   <a class="back" href="index.html">← 返回管理入口</a>
-
   <section class="panel">
     <h1>新增学员</h1>
-    <p class="desc">第一版先把录入做顺手。一页录完姓名、课程、课时和日期，保存后写入 <code>students</code> 表；如果有金额，也会顺手记一条缴费记录。</p>
-
-    <div id="status" class="status">请先在 <code>supabase-config.js</code> 填好项目地址和 anon key。</div>
-
+    <div id="status" class="status">正在检查登录状态…</div>
     <form id="student-form">
       <div class="grid">
         <input id="student_name" class="field" type="text" placeholder="学员姓名" required>
         <select id="person_type" class="field" required>
-          <option value="">身份类型：儿童 / 成人</option>
+          <option value="">身份类型</option>
           <option value="child">儿童</option>
           <option value="adult">成人</option>
         </select>
-
         <input id="contact_name" class="field" type="text" placeholder="家长姓名 / 成人姓名" required>
         <input id="phone" class="field" type="tel" placeholder="电话号码" required>
-
         <input id="age" class="field" type="number" min="0" placeholder="年龄">
         <select id="course_name" class="field" required>
           <option value="">报名课程</option>
@@ -113,13 +49,9 @@ code{
           <option value="动物">动物</option>
           <option value="综合创作">综合创作</option>
         </select>
-
         <input id="total_lessons" class="field" type="number" min="0" placeholder="总课时" required>
         <input id="paid_amount" class="field" type="number" min="0" step="0.01" placeholder="已缴费金额">
-
         <input id="start_date" class="field" type="date">
-        <input id="expiry_date" class="field" type="date">
-
         <select id="payment_method" class="field">
           <option value="">缴费方式</option>
           <option value="微信">微信</option>
@@ -128,141 +60,95 @@ code{
           <option value="转账">转账</option>
         </select>
         <input id="paid_at" class="field" type="date">
-
-        <textarea id="note" class="area full" placeholder="备注：例如周六来、对颜料敏感、妈妈联系、需要补课等"></textarea>
+        <textarea id="note" class="area full" placeholder="备注"></textarea>
       </div>
-
       <div class="actions">
         <button id="save-btn" class="btn primary" type="submit">保存学员</button>
         <button id="save-continue-btn" class="btn secondary" type="button">保存并继续录入</button>
       </div>
     </form>
-
     <a class="link" href="students.html">去看学员列表 →</a>
   </section>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="./supabase-config.js"></script>
 <script src="./supabase-client.js"></script>
+<script src="./auth.js"></script>
 <script>
-const form = document.getElementById("student-form");
-const statusBox = document.getElementById("status");
-const saveBtn = document.getElementById("save-btn");
-const saveContinueBtn = document.getElementById("save-continue-btn");
-let continueAfterSave = false;
-
-function setStatus(message, type = "") {
-  statusBox.className = "status" + (type ? " " + type : "");
-  statusBox.textContent = message;
-}
-
-function getPayload() {
-  const totalLessons = Number(document.getElementById("total_lessons").value || 0);
+const form=document.getElementById("student-form");
+const statusBox=document.getElementById("status");
+const saveBtn=document.getElementById("save-btn");
+const saveContinueBtn=document.getElementById("save-continue-btn");
+let continueAfterSave=false;
+function setStatus(message,type=""){statusBox.className="status"+(type?" "+type:"");statusBox.textContent=message}
+function getPayload(){
+  const totalLessons=Number(document.getElementById("total_lessons").value||0);
   return {
-    student_name: document.getElementById("student_name").value.trim(),
-    contact_name: document.getElementById("contact_name").value.trim(),
-    phone: document.getElementById("phone").value.trim(),
-    person_type: document.getElementById("person_type").value,
-    age: document.getElementById("age").value ? Number(document.getElementById("age").value) : null,
-    course_name: document.getElementById("course_name").value,
-    total_lessons: totalLessons,
-    remaining_lessons: totalLessons,
-    start_date: document.getElementById("start_date").value || null,
-    expiry_date: document.getElementById("expiry_date").value || null,
-    note: document.getElementById("note").value.trim() || null,
-    status: totalLessons <= 2 ? "low_lessons" : "active",
+    student_name:document.getElementById("student_name").value.trim(),
+    contact_name:document.getElementById("contact_name").value.trim(),
+    phone:document.getElementById("phone").value.trim(),
+    person_type:document.getElementById("person_type").value,
+    age:document.getElementById("age").value?Number(document.getElementById("age").value):null,
+    course_name:document.getElementById("course_name").value,
+    total_lessons:totalLessons,
+    remaining_lessons:totalLessons,
+    start_date:document.getElementById("start_date").value||null,
+    expiry_date:null,
+    note:document.getElementById("note").value.trim()||null,
+    status:totalLessons<=2?"low_lessons":"active",
   };
 }
-
-async function saveStudent() {
-  if (!window.tcManage.hasConfig()) {
-    throw new Error("还没有填写 Supabase 配置，请先编辑 supabase-config.js。");
-  }
-
-  const client = window.tcManage.getClient();
-  const session = await window.tcManage.getSession();
-  if (!session) {
-    throw new Error("当前还没有登录。下一步需要补一个内部登录页，或者你先把表策略改成允许 anon 插入。");
-  }
-
-  const payload = getPayload();
-  const { data: student, error: studentError } = await client
-    .from("students")
-    .insert(payload)
-    .select()
-    .single();
-
-  if (studentError) throw studentError;
-
-  const paidAmount = Number(document.getElementById("paid_amount").value || 0);
-  const paymentMethod = document.getElementById("payment_method").value;
-  const paidAt = document.getElementById("paid_at").value;
-
-  if (paidAmount > 0) {
+async function saveStudent(){
+  const client=window.tcManage.getClient();
+  const session=await window.tcManage.getSession();
+  if(!session) throw new Error("当前还没有登录。");
+  const payload=getPayload();
+  const { data: student, error: studentError } = await client.from("students").insert(payload).select().single();
+  if(studentError) throw studentError;
+  const paidAmount=Number(document.getElementById("paid_amount").value||0);
+  const paymentMethod=document.getElementById("payment_method").value;
+  const paidAt=document.getElementById("paid_at").value;
+  if(paidAmount>0){
     const { error: paymentError } = await client.from("payments").insert({
-      student_id: student.id,
-      amount: paidAmount,
-      method: paymentMethod || "未填写",
-      paid_at: paidAt ? new Date(paidAt + "T00:00:00").toISOString() : new Date().toISOString(),
-      note: "新增学员时录入",
+      student_id:student.id,
+      amount:paidAmount,
+      method:paymentMethod||"未填写",
+      paid_at:paidAt ? new Date(paidAt+"T00:00:00").toISOString() : new Date().toISOString(),
+      note:"新增学员时录入"
     });
-    if (paymentError) throw paymentError;
+    if(paymentError) throw paymentError;
   }
-
   return student;
 }
-
-async function handleSubmit(event) {
+async function handleSubmit(event){
   event.preventDefault();
-  saveBtn.disabled = true;
-  saveContinueBtn.disabled = true;
-  setStatus("正在保存学员信息…");
-
-  try {
-    const student = await saveStudent();
-    setStatus(`已保存：${student.student_name}。`, "ok");
-    if (continueAfterSave) {
-      form.reset();
-      continueAfterSave = false;
-      document.getElementById("student_name").focus();
-      setStatus("已保存，表单已清空，可以继续录入下一位学员。", "ok");
+  saveBtn.disabled=true; saveContinueBtn.disabled=true; setStatus("正在保存…");
+  try{
+    const student=await saveStudent();
+    if(continueAfterSave){
+      form.reset(); continueAfterSave=false; setDefaultDates(); document.getElementById("student_name").focus();
+      setStatus(`已保存：${student.student_name}。`, "ok");
+    }else{
+      setStatus(`已保存：${student.student_name}。`, "ok");
     }
-  } catch (error) {
-    setStatus(window.tcManage.formatError(error), "error");
-  } finally {
-    saveBtn.disabled = false;
-    saveContinueBtn.disabled = false;
-  }
+  }catch(error){setStatus(window.tcManage.formatError(error),"error")}
+  finally{saveBtn.disabled=false;saveContinueBtn.disabled=false;}
 }
-
-saveContinueBtn.addEventListener("click", () => {
-  continueAfterSave = true;
-  form.requestSubmit();
-});
-
-form.addEventListener("submit", handleSubmit);
-
-function setDefaultDates() {
-  const today = new Date();
-  const local = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-    .toISOString()
-    .slice(0, 10);
-
-  const startDate = document.getElementById("start_date");
-  const paidAt = document.getElementById("paid_at");
-
-  if (!startDate.value) startDate.value = local;
-  if (!paidAt.value) paidAt.value = local;
+saveContinueBtn.addEventListener("click",()=>{continueAfterSave=true;form.requestSubmit();});
+form.addEventListener("submit",handleSubmit);
+function setDefaultDates(){
+  const today=new Date();
+  const local=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+  if(!document.getElementById("start_date").value) document.getElementById("start_date").value=local;
+  if(!document.getElementById("paid_at").value) document.getElementById("paid_at").value=local;
 }
-
-setDefaultDates();
-
-if (window.tcManage.hasConfig()) {
-  setStatus("Supabase 配置已读取。保存前请确认你已经在内部账号下登录。");
-} else {
-  setStatus("请先填写 supabase-config.js。当前页面还不会真正保存。", "error");
+async function init(){
+  if(!window.tcManage.hasConfig()){setStatus("请先填写 supabase-config.js。","error");return;}
+  const session=await window.tcManage.getSession();
+  setStatus(session ? "已登录，可以直接保存。" : "当前未登录。","error");
+  setDefaultDates();
 }
+init();
 </script>
 </body>
 </html>
