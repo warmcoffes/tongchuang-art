@@ -3,72 +3,49 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>管理入口｜童创艺术</title>
+<title>管理入口</title>
 <style>
 *{box-sizing:border-box}
-:root{
-  --bg:#f6f0e6;--panel:#fff;--ink:#171717;--muted:#71695d;--line:rgba(23,23,23,.12);
-}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+body{margin:0;background:#f6f0e6;color:#171717;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
 .app{max-width:960px;margin:0 auto;padding:18px 18px 40px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
-.back{text-decoration:none;color:var(--ink);font-size:14px;font-weight:700}
-.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.action-link{
-  text-decoration:none;min-height:38px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
-  background:#1f1f1c;color:#fff;font-size:13px;font-weight:800;border:0;cursor:pointer;
-}
-.badge{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.66);font-size:12px;color:var(--muted)}
-.hero,.session,.card{background:var(--panel);border:1px solid var(--line);border-radius:24px}
-.hero{padding:22px;box-shadow:0 16px 36px rgba(54,41,26,.08)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.back{color:#171717;text-decoration:none;font-size:14px;font-weight:700}
+.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn,.ghost{min-height:40px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;text-decoration:none;border:0;cursor:pointer}
+.btn{background:#1f1f1c;color:#fff}
+.ghost{background:#ece6da;color:#171717}
+.hero,.card{background:#fff;border:1px solid rgba(23,23,23,.12);border-radius:24px}
+.hero{padding:22px}
 h1{margin:0;font-size:32px;letter-spacing:-.04em}
-.session{margin-top:16px;padding:16px 18px;color:var(--muted);line-height:1.8;font-size:14px}
+.status{margin-top:14px;padding:12px 14px;border-radius:14px;background:#fbfaf6;border:1px solid rgba(23,23,23,.08);color:#61594f;font-size:14px;display:none}
+.status.show{display:block}
+.status.ok{background:#edf6ef;color:#245b39}
+.status.error{background:#fff0ea;color:#9b3f24}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
-.card{padding:20px;text-decoration:none;color:var(--ink);display:block}
-.card small{display:block;color:var(--muted);font-size:12px;letter-spacing:.08em}
+.card{padding:20px;text-decoration:none;color:#171717}
+.card small{display:block;color:#746c61;font-size:12px}
 .card strong{display:block;margin-top:8px;font-size:24px;letter-spacing:-.03em}
-.card span{display:block;margin-top:10px;color:var(--muted);line-height:1.7;font-size:14px}
 @media (max-width:760px){.grid{grid-template-columns:1fr}h1{font-size:28px}}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="topbar">
-    <a class="back" href="../index.html">← 返回首页</a>
-    <div class="top-actions">
-      <a class="action-link" href="login.html">登录</a>
-      <button id="logout-btn" class="action-link" type="button">退出</button>
-      <div class="badge">内部使用</div>
+    <a class="back" href="../index.html">返回首页</a>
+    <div class="actions">
+      <a class="btn" href="login.html">登录</a>
+      <button id="logout-btn" class="ghost" type="button">退出</button>
     </div>
   </div>
-
   <section class="hero">
     <h1>管理入口</h1>
+    <div id="status" class="status"></div>
   </section>
-
-  <section id="session-box" class="session">正在检查登录状态…</section>
-
   <div class="grid">
-    <a class="card" href="students.html">
-      <small>01</small>
-      <strong>学员列表</strong>
-      <span>查询学员、课时、状态</span>
-    </a>
-    <a class="card" href="new.html">
-      <small>02</small>
-      <strong>新增学员</strong>
-      <span>录入学员和缴费</span>
-    </a>
-    <a class="card" href="checkin.html">
-      <small>03</small>
-      <strong>签到扣课</strong>
-      <span>签到、请假、补课、调整</span>
-    </a>
-    <a class="card" href="payments.html">
-      <small>04</small>
-      <strong>缴费记录</strong>
-      <span>查看和新增缴费</span>
-    </a>
+    <a class="card" href="students.html"><small>01</small><strong>学员列表</strong></a>
+    <a class="card" href="new.html"><small>02</small><strong>新增学员</strong></a>
+    <a class="card" href="checkin.html"><small>03</small><strong>签到扣课</strong></a>
+    <a class="card" href="payments.html"><small>04</small><strong>缴费记录</strong></a>
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -76,19 +53,28 @@ h1{margin:0;font-size:32px;letter-spacing:-.04em}
 <script src="./supabase-client.js"></script>
 <script src="./auth.js"></script>
 <script>
-const sessionBox = document.getElementById("session-box");
-const logoutBtn = document.getElementById("logout-btn");
-function setSessionText(message){sessionBox.textContent=message}
-async function initSession(){
-  if(!window.tcManage.hasConfig()){setSessionText("请先完成 Supabase 配置。");return;}
-  const session = await window.tcManage.getSession();
-  setSessionText(session && session.user ? `当前已登录：${session.user.email}` : "当前未登录");
+const statusBox=document.getElementById("status");
+const logoutBtn=document.getElementById("logout-btn");
+function setStatus(message,type=""){
+  if(!message){statusBox.textContent="";statusBox.className="status";return;}
+  statusBox.className="status show"+(type?" "+type:"");
+  statusBox.textContent=message;
 }
-logoutBtn.addEventListener("click", async () => {
-  try{await window.tcAuth.signOut();setSessionText("你已经退出登录。");}
-  catch(error){setSessionText(window.tcManage.formatError(error));}
+async function init(){
+  if(!window.tcManage.hasConfig()){setStatus("Supabase 配置未完成","error");return;}
+  const session=await window.tcManage.getSession();
+  if(session?.user?.email){setStatus(`已登录：${session.user.email}`,"ok");}
+  else{setStatus("未登录","error");}
+}
+logoutBtn.addEventListener("click",async()=>{
+  try{
+    await window.tcAuth.signOut();
+    setStatus("已退出","ok");
+  }catch(error){
+    setStatus(window.tcManage.formatError(error),"error");
+  }
 });
-initSession();
+init();
 </script>
 </body>
 </html>

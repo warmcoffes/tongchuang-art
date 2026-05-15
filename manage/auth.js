@@ -3,7 +3,9 @@
     const { redirect = true } = options;
     const session = await window.tcManage.getSession();
     if (!session && redirect) {
-      const next = encodeURIComponent(location.pathname.split("/").slice(-1)[0] || "index.html");
+      const next = encodeURIComponent(
+        location.pathname.split("/").slice(-1)[0] || "index.html"
+      );
       location.href = `login.html?next=${next}`;
       return null;
     }
